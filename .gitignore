@@ -1,0 +1,8 @@
+.idea/
+Flicker8k_Dataset/
+Flicker8k_Text/
+preparation/features.pkl
+preparation/__pycache__
+neural_model/model_[0-5]*.h5
+neural_model/__pycache__
+neural_model/features.pkl
