@@ -1,3 +1,5 @@
+from keras.engine.saving import load_model
+
 from neural_model.load_data import DataLoader
 from neural_model.load_text import Tokenize
 from neural_model.model_merge_architecture import NeuralModel
@@ -32,22 +34,21 @@ class TrainModel:
         max_length = tokenize.max_length()
         print('Description Length: %d' % max_length)
 
-        model = NeuralModel(vocab_size, max_length)
         # define the model
-        model = model.define_model()
+        model = load_model('model_new_0.h5')
         # train the model, run epochs manually and save after each epoch
         steps = len(train_descriptions)
-        for i in range(self.epochs):
+        for i in range(1, self.epochs):
             # create the data generator
-            generator = tokenize.data_generator(train_features, tokenizer, max_length)
+            generator = tokenize.data_generator(train_features, max_length)
             # fit for one epoch
             model.fit_generator(generator, epochs=1, steps_per_epoch=steps, verbose=1)
             # save model
-            model.save('model_' + str(i) + '.h5')
+            model.save('model_new_' + str(i) + '.h5')
 
 
 filename = '../Flicker8k_text/Flickr_8k.trainImages.txt'
 train_descriptions = '../preparation/descriptions.txt'
 features = '../preparation/features.pkl'
-train = TrainModel(filename, train_descriptions, features, 4)
+train = TrainModel(filename, train_descriptions, features, 5)
 train.train()
