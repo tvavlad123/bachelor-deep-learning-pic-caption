@@ -74,3 +74,18 @@ class TextPreparation:
         file.write(data)
         file.close()
 
+
+filename = '../Flicker8k_text/Flickr8k.token.txt'
+text_prep = TextPreparation()
+# load descriptions
+doc = text_prep.load_doc(filename)
+# parse descriptions
+descriptions = text_prep.load_descriptions(doc)
+print('Loaded: %d ' % len(descriptions))
+# clean descriptions
+text_prep.clean_descriptions(descriptions)
+# summarize vocabulary
+vocabulary = text_prep.to_vocabulary(descriptions)
+print('Vocabulary Size: %d' % len(vocabulary))
+# save to file
+text_prep.save_descriptions(descriptions, 'descriptions.txt')

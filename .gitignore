@@ -3,8 +3,8 @@ Flicker8k_Dataset/
 Flicker8k_Text/
 preparation/features.pkl
 preparation/__pycache__
-neural_model/model_[0-5]*.h5
-neural_model/model_new_[0-5]*.h5
+neural_model/models/inject_all_8k7.h5
+neural_model/models/merge_all_8k7.h5
 neural_model/__pycache__
 neural_model/features.pkl
 neural_model/tokenizer.pkl
